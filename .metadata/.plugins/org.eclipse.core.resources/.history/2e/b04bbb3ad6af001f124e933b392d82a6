@@ -1,0 +1,27 @@
+package com.venkat;
+
+import java.util.Arrays;
+
+public class EmpDetails {
+	public static void main(String[] args) {
+		List<Employee>=Arrays.asList(new Employee(1, "Venkat", "IT",20000),
+				new Employee(1, "Venkat", "IT",20000),
+				new Employee(1, "Venkat", "IT",20000));
+		
+	}
+}
+	
+class Employee{
+		int empid;
+		String empname;
+		String empdept;
+		int empsal;
+		public Employee(int empid, String empname, String empdept, int empsal) {
+			this.empid = empid;
+			this.empname = empname;
+			this.empdept = empdept;
+			this.empsal = empsal;
+		
+	}
+
+}

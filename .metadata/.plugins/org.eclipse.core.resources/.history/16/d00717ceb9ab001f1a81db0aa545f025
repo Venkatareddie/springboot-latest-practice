@@ -1,0 +1,5 @@
+package in.venkat.repo;
+
+public interface UserRepository {
+
+}

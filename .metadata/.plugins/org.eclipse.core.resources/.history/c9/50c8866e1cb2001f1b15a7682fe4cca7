@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="springboot_multi_db_config">
+        <property name="context-root" value="52-SB-Multi-DB-Config-App"/>
+    </wb-module>
+</project-modules>

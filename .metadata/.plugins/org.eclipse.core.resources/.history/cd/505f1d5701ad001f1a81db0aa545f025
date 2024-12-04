@@ -1,0 +1,27 @@
+package in.venkat.repo;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import in.venkat.entity.User;
+import jakarta.transaction.Transactional;
+
+@Repository
+public interface UserRepository extends CrudRepository<User, Integer> {
+	
+	public List<User> findByCountry(String country);
+	public List<User> findByCountryAndAge(String country,int age);
+	public List<User> findByAgeGreaterThan(int age);
+	@Query(value = "select * from user_info", nativeQuery=true)
+	public List<User> getUsersSql();
+	@Query("From User")
+	public List<User>userDeatisHql();
+	@Transactional
+	@Query("delete from User u where u.age=:age")
+	public void deleteUserByAgeHql(@Param("age") int age);
+
+}

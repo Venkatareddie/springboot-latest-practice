@@ -1,0 +1,23 @@
+package in.venkat;
+
+import org.springframework.stereotype.Service;
+
+import in.venkat.entity.Contact;
+import in.venkat.repository.ContactRepository;
+
+@Service
+public class ContactService {
+
+	private ContactRepository contactRepository;
+
+	public void saveContact(Contact contact) {
+		Contact c = new Contact();
+		c.setCname("Venkat");
+		c.setCnumber(7989490);
+		c.setCaddress("venkat@gmail.com");
+		
+		contactRepository.save(c);
+
+	}
+
+}

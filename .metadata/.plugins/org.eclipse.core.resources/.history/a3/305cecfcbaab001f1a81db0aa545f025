@@ -1,0 +1,33 @@
+package in.venkat.service;
+
+import org.springframework.stereotype.Service;
+
+import in.venkat.entity.User;
+import in.venkat.repo.UserRepository;
+
+@Service
+public class UserService {
+
+	private UserRepository userRepository;
+
+	public UserService(UserRepository userRepository) {
+
+		this.userRepository = userRepository;
+	}
+	
+	public void deleteAllUsers()
+	{
+		userRepository.deleteAll();
+	}
+	
+	public void saveUser()
+	{
+		User u=new User();
+		u.setId(100);
+		u.setName("Venkat");
+		u.setAge(27);
+		u.setCountry("India");
+		userRepository.save(u);
+	}
+
+}

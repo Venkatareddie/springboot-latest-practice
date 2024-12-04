@@ -1,0 +1,15 @@
+package in.venkat.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import in.venkat.service.ImageService;
+
+@RestController
+@RequestMapping("/save")
+public class ImageController {
+	@Autowired
+	private ImageService imageService;
+
+}

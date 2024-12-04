@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/books" />
+		<property name="username" value="root" />
+		<property name="password" value="root" />
+	</bean>
+	<bean id="jt" class="org.springframework.jdbc.core.JdbcTemplate">
+		<constructor-arg ref="dataSource" />
+	</bean>
+	<bean id="bd" class="in.venkat.BookDAOImpl">
+		<constructor-arg name="jdbcTemplate" ref="jt"></constructor-arg>
+	</bean>
+	
+	<bean id="excelGen" class="in.venkat.ExcelGenration" />
+	<bean id="genpdf" class="in.venkat.GeneratePdf"/>
+
+	<bean id="bs" class="in.venkat.BookService">
+	<constructor-arg name="bookDAO" ref="bd"></constructor-arg>
+	<constructor-arg name="excelGenration" ref="excelGen"></constructor-arg>
+	<constructor-arg name="generatePdf" ref="genpdf"></constructor-arg>
+	</bean>
+</beans>

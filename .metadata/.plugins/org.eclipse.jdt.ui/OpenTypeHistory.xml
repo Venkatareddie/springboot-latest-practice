@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<typeInfoHistroy>
+    <typeInfo handle="=03-Maven/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;in.venkat{IEngine.java[IEngine" modifiers="513" timestamp="1730890979491"/>
+    <typeInfo handle="=01-Autowiring/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;in.venkat{IPrinter.java[IPrinter" modifiers="513" timestamp="1731102679527"/>
+    <typeInfo handle="=UserManagement/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;in.venkat{IPwdService.java[IPwdService" modifiers="513" timestamp="1731241959954"/>
+    <typeInfo handle="=UserManagement/C:\/Users\/venka\/.m2\/repository\/org\/springframework\/spring-core\/6.1.14\/spring-core-6.1.14.jar=/maven.pomderived=/true=/=/maven.groupId=/org.springframework=/=/maven.artifactId=/spring-core=/=/maven.version=/6.1.14=/=/maven.scope=/compile=/=/maven.pomderived=/true=/&lt;org.springframework.core(InfrastructureProxy.class[InfrastructureProxy" modifiers="1537" timestamp="1730273262568"/>
+    <typeInfo handle="=UserManagement/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;in.venkat{IUserDaoService.java[IUserDaoService" modifiers="513" timestamp="1731238428260"/>
+    <typeInfo handle="=UserManagement/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;in.venkat{IEmailNotification.java[IEmailNotification" modifiers="513" timestamp="1731238401713"/>
+</typeInfoHistroy>

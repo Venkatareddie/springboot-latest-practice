@@ -1,0 +1,20 @@
+package com.streams;
+
+public class GroupByStreams {
+
+}
+
+class Student {
+	int sid;
+	String sname;
+	String sloc;
+
+	public Student(int sid, String sname, String sloc) {
+
+		this.sid = sid;
+		this.sname = sname;
+		this.sloc = sloc;
+	}
+	
+
+}

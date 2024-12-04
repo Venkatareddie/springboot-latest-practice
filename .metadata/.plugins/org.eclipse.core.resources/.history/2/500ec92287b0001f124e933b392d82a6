@@ -1,0 +1,48 @@
+package in.venkat.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import in.venkat.entity.Contact;
+import in.venkat.generator.CustomIdGenerator;
+import in.venkat.repository.ContactRepository;
+import jakarta.transaction.Transactional;
+
+@Service
+public class ContactService {
+	@Autowired
+	private ContactRepository contactRepository;
+
+	public void saveContact() {
+		Contact c = new Contact();
+		c.setCname("Venkat");
+		c.setCnumber(79490);
+		c.setCaddress("venkat@gmail.com");
+
+		Contact save = contactRepository.save(c);
+		System.out.println(save);
+
+	}
+	
+	@Transactional
+    public String generateCustomId(String idName, String prefix) {
+        // Get the current value for the given ID name
+        CustomIdGenerator generator = contactRepository.findAllById(idName).orElse(new Contact());
+        
+        if (generator.getIdName() == null) {
+            generator.setIdName(idName);
+            generator.setLastId(0); // Start from 0 or any other starting point
+        }
+
+        // Increment the last generated ID
+        int newId = generator.getLastId() + 1;
+        generator.setLastId(newId);
+
+        // Save the updated ID back to the database
+        contactRepository.saveAll(generator);
+
+        // Return the ID with the prefix (e.g., SAP01, SAP02, etc.)
+        return prefix + String.format("%02d", newId);  // Adjust format for leading zeros if necessary
+
+
+}

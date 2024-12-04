@@ -1,0 +1,10 @@
+package in.venkat;
+
+public class Contact {
+
+	private int cid;
+	private String cname;
+	private long cnumber;
+	private String caddress;
+
+}

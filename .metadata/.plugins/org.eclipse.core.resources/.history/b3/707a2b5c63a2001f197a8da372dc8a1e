@@ -1,0 +1,10 @@
+package in.venkat;
+
+import java.awt.print.Book;
+import java.util.List;
+
+public interface BookDAO {
+	
+	public void saveBook(int bookId, String bookName, double bookPrice);
+	
+}

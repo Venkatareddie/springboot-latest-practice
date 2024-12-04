@@ -1,0 +1,59 @@
+package com.ashokit.config;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+@Configuration
+@EnableTransactionManagement
+@EnableJpaRepositories(basePackages = "in.venkat.repository.db1", entityManagerFactoryRef = "db1EntityManagerFactory", transactionManagerRef = "db1TransactionManager")
+public class Db1Config {
+
+	@Value("${spring.db1.datasource.url}")
+	private String dbUrl;
+
+	@Value("${spring.db1.datasource.username}")
+	private String dbUsername;
+
+	@Value("${spring.db1.datasource.password}")
+	private String dbPassword;
+
+	@Value("${spring.db1.datasource.driverClassName}")
+	private String driverClassName;
+
+	@Bean(name = "db1DataSource")
+	@Primary
+	public DataSource dataSource() {
+		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+		dataSource.setUrl(dbUrl);
+		dataSource.setUsername(dbUsername);
+		dataSource.setPassword(dbPassword);
+		dataSource.setDriverClassName(driverClassName);
+		return dataSource;
+	}
+
+	@Bean(name = "db1EntityManagerFactory")
+	@Primary
+	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+		LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
+		factoryBean.setDataSource(dataSource());
+		factoryBean.setPackagesToScan("in.venkat.entity");
+		return factoryBean;
+	}
+
+	@Bean(name = "db1TransactionManager")
+	@Primary
+	public JpaTransactionManager transactionManager() {
+		JpaTransactionManager transactionManager = new JpaTransactionManager();
+		transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
+		return transactionManager;
+	}
+}

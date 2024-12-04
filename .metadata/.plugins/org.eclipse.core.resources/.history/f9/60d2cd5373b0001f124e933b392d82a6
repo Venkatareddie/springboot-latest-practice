@@ -1,0 +1,19 @@
+package in.venkat;
+
+import jakarta.persistence.Entity;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Contact {
+
+	private int cid;
+	private String cname;
+	private long cnumber;
+	private String caddress;
+
+}

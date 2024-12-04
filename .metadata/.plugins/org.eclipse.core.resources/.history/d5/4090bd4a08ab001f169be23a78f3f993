@@ -1,0 +1,24 @@
+package com.streams;
+
+public class MaxMinAvgSalary {
+	public static void main(String[] args) {
+		Employee j1 = new Employee("Venkat", 50000.00);
+
+	}
+
+class Employee {
+	String empName;
+	double empSal;
+
+	public Employee(String empName, double empSal) {
+		this.empName = string;
+		this.empSal = empSal;
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [empName=" + empName + ", empSal=" + empSal + "]";
+	}
+}
+
+}

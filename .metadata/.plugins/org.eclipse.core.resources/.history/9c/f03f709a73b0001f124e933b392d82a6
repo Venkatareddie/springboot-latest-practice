@@ -1,0 +1,5 @@
+package in.venkat.repository;
+
+public interface ContactRepository {
+
+}
