@@ -1,0 +1,7 @@
+package in.venkat.customgenerator;
+
+import org.hibernate.id.IdentifierGenerator;
+
+public interface CustomGenerator extends IdentifierGenerator {
+
+}

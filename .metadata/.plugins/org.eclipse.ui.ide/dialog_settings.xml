@@ -62,6 +62,7 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\Users\venka\Downloads\Workspace\springboot_multi_db_config"/>
 			<item value="C:\Users\venka\Downloads\Workspace - 1"/>
 		</list>
 		<section name="SmartImportWizard.dialogBounds">

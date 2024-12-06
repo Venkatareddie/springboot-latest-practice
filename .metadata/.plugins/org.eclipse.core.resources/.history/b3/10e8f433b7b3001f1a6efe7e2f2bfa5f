@@ -1,0 +1,38 @@
+package in.venkat.customgenerator;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import org.hibernate.engine.spi.SharedSessionContractImplementor;
+import org.hibernate.id.IdentifierGenerator;
+import org.hibernate.jdbc.Work;
+
+public class CustomOwnGenerator implements IdentifierGenerator {
+
+    String prefix = "ORD";
+    String suffix = ""; 
+
+    @Override
+    public Object generate(SharedSessionContractImplementor session, Object object) {
+        String generatedId = null;
+        try {
+            generatedId = session.doReturningWork(connection -> {
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery("SELECT sq.nextval from dual"); 
+                if (resultSet.next()) {
+                	
+                	int seqval = resultSet.getInt(1);
+                	String suffix=String.valueOf(seqval);
+                    
+                }
+                return null;
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace(); 
+        }
+
+        return prefix + suffix;
+    }
+}

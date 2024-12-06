@@ -1,0 +1,35 @@
+package in.venkat.customgenerator;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import org.hibernate.engine.spi.SharedSessionContractImplementor;
+import org.hibernate.id.IdentifierGenerator;
+import org.hibernate.jdbc.Work;
+
+public class CustomOwnGenerator implements IdentifierGenerator {
+
+    String prefix = "sq";
+    String suffix = ""; 
+
+    @Override
+    public Object generate(SharedSessionContractImplementor session, Object object) {
+        String generatedId = null;
+        try {
+            generatedId = session.doReturningWork(connection -> {
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery("SELECT NEXTVAL('sq')"); 
+                if (resultSet.next()) {
+                    return prefix + resultSet.getInt(1) + suffix; 
+                }
+                return null;
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace(); 
+        }
+
+        return generatedId != null ? generatedId : prefix + "0" + suffix; // Fallback if the ID is null
+    }
+}

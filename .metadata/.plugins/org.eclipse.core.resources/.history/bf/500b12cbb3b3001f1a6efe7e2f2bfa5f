@@ -1,0 +1,39 @@
+package in.venkat.customgenerator;
+
+import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import org.hibernate.engine.spi.SharedSessionContractImplementor;
+
+import in.venkat.generator.CustomIdGenerator;
+
+/**
+ * CustomOwnGenerator generates IDs using an Oracle sequence.
+ */
+public class CustomOwnGenerator implements CustomIdGenerator {
+
+    private static final String SEQUENCE_NAME = "ORD"; // Replace with your Oracle sequence name
+
+    public Serializable generate(SharedSessionContractImplementor session, Object object) {
+        final long[] generatedId = new long[1]; // To hold the ID as `doWork` requires final or effectively final variables.
+
+        session.doWork(connection -> {
+            try (PreparedStatement ps = connection.prepareStatement("SELECT " + SEQUENCE_NAME + ".NEXTVAL FROM DUAL");
+                 ResultSet rs = ps.executeQuery()) {
+
+                if (rs.next()) {
+                    generatedId[0] = rs.getLong(1); // Get the ID from the sequence
+                } else {
+                    throw new SQLException("Unable to retrieve the next value from sequence: " + SEQUENCE_NAME);
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException("Error generating ID using Oracle sequence", e);
+            }
+        });
+
+        return generatedId[0]; // Return the generated ID
+    }
+}
